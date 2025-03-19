@@ -1,0 +1,104 @@
+
+/***    Default    ***/
+
+body {
+    background-color: beige;
+}
+
+main {
+    height: 64dvh;
+    overflow: auto;
+    padding: 2rem 0;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+}
+
+/***    Header    ***/
+
+.header {
+    background: #8CDDBA;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F2C94C, #8CDDBA);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F2C94C, #8CDDBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: 8dvh;
+}
+
+.header img {
+    max-width: 90px;
+}
+
+/***    Content    ***/
+
+.site_title {
+    text-shadow: 1px 1px 1px #000;
+}
+
+.site_nav {
+    text-shadow: 1px 1px 1px #fff;
+}
+
+.my_card {
+    max-width: 17rem;
+}
+
+.boll-home {
+    width: 14rem;
+    height:14rem;
+    background-color: #FFE281;
+    font-size: 6rem;
+    text-align: center;
+    align-content: center;
+    color: #F3B438;
+    border-radius: 10rem;
+}
+
+.text-about {
+    text-align: justify;
+}
+
+/***    Footer    ***/
+
+.footer {
+    background-color: #212121;
+    color: #fff;
+    font-size: .75rem;
+    border: 1px solid transparent;
+}
+
+.footer img {
+    max-width: 40px;
+}
+
+/***    Screen    ***/
+
+@media (max-width: 990px) {
+    .my_card {
+        max-width: 12rem;
+    }
+
+    .boll-home {
+        width: 12rem;
+        height:12rem;
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .my_card {
+        max-width: 7rem;
+    }
+
+    .boll-home {
+        width: 7rem;
+        height: 7rem;
+        font-size: 2rem;
+    }
+}
