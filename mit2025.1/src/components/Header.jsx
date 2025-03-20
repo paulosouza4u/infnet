@@ -52,6 +52,11 @@ const Header = () => {
                         Data
                     </NavLink>
                 </NavItem>
+                <NavItem>
+                    <NavLink tag={Link} to="/users-axios">
+                        UsersAxios
+                    </NavLink>
+                </NavItem>
             </Nav>
         </Collapse>
     </Navbar>
