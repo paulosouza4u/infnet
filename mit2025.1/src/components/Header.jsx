@@ -57,6 +57,21 @@ const Header = () => {
                         UsersAxios
                     </NavLink>
                 </NavItem>
+                <NavItem>
+                    <NavLink tag={Link} to="/state-study">
+                        StateStudy
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink tag={Link} to="/icons">
+                        Icons
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink tag={Link} to="/store">
+                        Store
+                    </NavLink>
+                </NavItem>
             </Nav>
         </Collapse>
     </Navbar>

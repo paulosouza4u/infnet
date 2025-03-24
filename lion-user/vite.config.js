@@ -11,9 +11,4 @@ export default defineConfig({
     },
   },
   plugins: [react()],
-  resolve: {
-    alias: {
-      '@image': '/src/assets/image/',
-    }
-  }
 })
