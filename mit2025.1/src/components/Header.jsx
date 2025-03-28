@@ -1,7 +1,9 @@
 import React, {useState} from "react";
+import { useTheme } from "../hooks/ThemeContext";
+import { useCart } from "../hooks/CartContext";
+import { FaSun, FaMoon, FaShoppingCart } from "react-icons/fa";
 
-import 
-logo from "../assets/Infnet-Logo.png"
+import logo from "../assets/Infnet-Logo.png"
 
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
@@ -12,7 +14,8 @@ import {
     Collapse,
     Nav,
     NavItem,
-    NavLink, 
+    NavLink,
+    NavbarText
   } from "reactstrap"
   
 
@@ -21,6 +24,11 @@ const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
+
+    const { theme, toggleTheme } = useTheme();
+
+    const {cart, dispatch } = useCart();
+    console.log(cart);
 
     return (
     <>
@@ -73,6 +81,8 @@ const Header = () => {
                     </NavLink>
                 </NavItem>
             </Nav>
+            <NavbarText onClick={toggleTheme}>{theme === 'dark' ? <FaSun/>:<FaMoon/>}</NavbarText>
+            <NavbarText><FaShoppingCart></FaShoppingCart>{cart.length}</NavbarText>
         </Collapse>
     </Navbar>
     </>
