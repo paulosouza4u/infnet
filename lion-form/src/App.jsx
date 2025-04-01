@@ -6,7 +6,6 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Feedback} from "./Components/Pages/Feedback.jsx";
 import {Content} from "./Components/Content.jsx";
 
-
 const App = () => {
   return (
     <BrowserRouter>
