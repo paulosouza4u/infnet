@@ -27,6 +27,10 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import StoreRedux from "./components/StoreRedux";
 
+//Componentes de autenticação
+import Login from "./components/Login"; //Quando o usuário não está logado
+import PrivateRoute from './components/PrivateRoute'; //Rota protegida
+
 import './App.css'
 
 function App() {
@@ -49,6 +53,13 @@ function App() {
                     <Route path="/store" element={<Store/>} />
                     <Route path="/store-redux" element={<StoreRedux/>} />
                     <Route path="/tema" element={<Tema/>} />
+                    <Route path="/login" element={<Login/>} />
+                    <Route path="/dashboard" element={
+                      <PrivateRoute>
+                        <h2>Página Protegida: Dashboard</h2>
+                      </PrivateRoute>
+                    }
+                    />
                   </Routes>
                 </Container>
                 <footer className="bg-dark text-white text-center p-3">

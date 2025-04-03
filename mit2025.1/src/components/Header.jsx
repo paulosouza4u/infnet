@@ -80,6 +80,26 @@ const Header = () => {
                         Store
                     </NavLink>
                 </NavItem>
+                <NavItem>
+                    <NavLink tag={Link} to="/store-redux">
+                        Store Redux
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink tag={Link} to="/tema">
+                        Tema
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink tag={Link} to="/login">
+                        Login
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink tag={Link} to="/dashboard">
+                        Dashboard
+                    </NavLink>
+                </NavItem>
             </Nav>
             <NavbarText onClick={toggleTheme}>{theme === 'dark' ? <FaSun/>:<FaMoon/>}</NavbarText>
             <NavbarText><FaShoppingCart></FaShoppingCart>{cart.length}</NavbarText>

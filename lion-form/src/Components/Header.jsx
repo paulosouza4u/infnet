@@ -22,7 +22,7 @@ export const Header = () => {
                             lion form app
                         </div>
                         <div className="fs-5 site_nav">
-                            <Nav >
+                            <Nav>
                                 <NavItem>
                                     <NavLink className="link-success" tag={Link} to="/" onClick={() => setPageName('')}>home</NavLink>
                                 </NavItem>
