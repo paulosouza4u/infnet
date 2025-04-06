@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Alert, Button, Container, Form, FormGroup, Input, Label} from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loding/Index";
@@ -15,26 +15,33 @@ const Login = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const auth = useSelector((state) => state.auth);
+
+    const errorMessage =
+        auth.error && typeof auth.error === 'object'
+            ? auth.error.error || JSON.stringify(auth.error)
+            : auth.error;
 
     const onDismiss = () => setVisible(false);
 
     const handleSubmit = async e => {
         e.preventDefault();
-        setLoading(true);
         const resultAction = await dispatch(loginsAsync({ username, password }));
         if (loginsAsync.fulfilled.match(resultAction)) {
-            setLoading(false);
             navigate("/welcome");
         } else {
-            setLoading(false);
             setVisible(true);
             console.log("Login fail: ", resultAction.error);
         }
-
-        console.log(resultAction);
     }
 
-    /**** REFAZER EXIBICAO VALIDACAO *****/
+    useEffect(() => {
+        if (auth.status === "loading") {
+            setLoading(true);
+        } else {
+            setLoading(false);
+        }
+    }, [handleSubmit]);
 
     /*** Component Render ***/
     return (
@@ -84,7 +91,7 @@ const Login = () => {
                 </div>
                 <div className="w-25 mx-auto mt-3">
                     <Alert color="danger" isOpen={visible} toggle={onDismiss}>
-                        <strong>Username</strong> or <strong>password</strong> is incorrect.
+                        <strong>#</strong> {errorMessage}
                     </Alert>
                 </div>
             </Container>

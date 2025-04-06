@@ -1,17 +1,15 @@
-import {Container, Nav, NavItem, NavLink} from "reactstrap";
 import { Link } from "react-router";
 import logotipo from "@image/lion-react.svg";
 import PrivateRoute from "./PrivateRoute.jsx";
-import {useSelector} from "react-redux";
-
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../../redux/slices/authSlice";
+import {Container, Nav, NavItem, NavLink} from "reactstrap";
 
 /*** HEADER COMPONENT ***/
  const Header = () => {
 
     const token = useSelector((state) => state.auth.token);
-
-    const test = useSelector((state) => state);
-    console.log(test);
+    const reduxDispatch = useDispatch();
 
     /*** Component Render ***/
     return (
@@ -28,17 +26,19 @@ import {useSelector} from "react-redux";
                                 <NavItem>
                                     <NavLink className="link-success" tag={Link} to="/">SHOP</NavLink>
                                 </NavItem>
-                                <PrivateRoute>
-                                    <NavItem>
-                                        <NavLink className="link-success" tag={Link} to="/my-lists">MY LISTS</NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink className="link-success" tag={Link} to="/my-cart">MY CART</NavLink>
-                                    </NavItem>
-                                </PrivateRoute>
+                                { token &&
+                                    <>
+                                        <NavItem>
+                                            <NavLink className="link-success" tag={Link} to="/my-lists">MY LISTS</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink className="link-success" tag={Link} to="/my-cart">MY CART</NavLink>
+                                        </NavItem>
+                                    </>
+                                }
                                 { token ?
                                     <NavItem>
-                                        <NavLink className="link-success" tag={Link} to="/login" onClick={() => {}}>LOGOUT</NavLink>
+                                        <NavLink className="link-success" tag={Link} to="/login" onClick={() => reduxDispatch(logout())}>LOGOUT</NavLink>
                                     </NavItem>
                                     :
                                     <NavItem>
