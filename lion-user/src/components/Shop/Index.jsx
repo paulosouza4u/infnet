@@ -1,6 +1,6 @@
 import { Container, Modal, ModalBody, ModalHeader } from "reactstrap";
 import React, {useEffect, useState} from "react";
-import {fetchProducts} from "../services/apiShop.jsx";
+import {fetchProducts} from "../../Services/apiShop.jsx";
 import Loading from "../Loding/Index.jsx";
 
 /*** SHOP COMPONENT ***/

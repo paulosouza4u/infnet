@@ -1,6 +1,7 @@
 import {Container, Nav, NavItem, NavLink} from "reactstrap";
 import { Link } from "react-router";
 import logotipo from "@image/lion-react.svg";
+import PrivateRoute from "./PrivateRoute.jsx";
 
 
 /*** HEADER COMPONENT ***/
@@ -23,12 +24,14 @@ import logotipo from "@image/lion-react.svg";
                                 <NavItem>
                                     <NavLink className="link-success" tag={Link} to="/">SHOP</NavLink>
                                 </NavItem>
-                                <NavItem>
-                                    <NavLink className="link-success" tag={Link} to="/my-lists">MY LISTS</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink className="link-success" tag={Link} to="/my-cart">MY CART</NavLink>
-                                </NavItem>
+                                <PrivateRoute>
+                                    <NavItem>
+                                        <NavLink className="link-success" tag={Link} to="/my-lists">MY LISTS</NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink className="link-success" tag={Link} to="/my-cart">MY CART</NavLink>
+                                    </NavItem>
+                                </PrivateRoute>
                                 { token ?
                                     <NavItem>
                                         <NavLink className="link-success" tag={Link} to="/login" onClick={() => {}}>LOGOUT</NavLink>

@@ -1,21 +1,38 @@
 import React, {useState} from "react";
-import {Button, Container, Form, FormGroup, Input, Label} from "reactstrap";
+import {Alert, Button, Container, Form, FormGroup, Input, Label} from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Loading from "../Loding/Index.jsx";
+import Loading from "../Loding/Index";
+import {loginsAsync} from "../../redux/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 
 /*** LOGIN COMPONENT ***/
 const Login = () => {
 
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [visible, setVisible] = useState(false);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const onDismiss = () => setVisible(false);
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const resultAction = await dispatch();
+        setLoading(true);
+        const resultAction = await dispatch(loginsAsync({ username, password }));
+        if (loginsAsync.fulfilled.match(resultAction)) {
+            setLoading(false);
+            navigate("/welcome");
+        } else {
+            setLoading(false);
+            setVisible(true);
+            console.log("Login fail: ", resultAction.error);
+        }
     }
+
+    /**** REFAZER EXIBICAO VALIDACAO *****/
 
     /*** Component Render ***/
     return (
@@ -28,21 +45,23 @@ const Login = () => {
                     </div>
                     <div>
                         <Form onSubmit={handleSubmit}>
-                            {'E-mail'}
+                            {'Username'}
                             <FormGroup floating>
-                                <Input id="email"
-                                       name="email"
-                                       placeholder="Email"
-                                       type="email"
-                                       value={email}
-                                       onChange={(e) => setEmail(e.target.value)}/>
-                                <Label for="email">
-                                    Email
+                                <Input required
+                                       id="username"
+                                       name="username"
+                                       placeholder="Username"
+                                       type="text"
+                                       value={username}
+                                       onChange={(e) => setUsername(e.target.value)}/>
+                                <Label for="username">
+                                    Username
                                 </Label>
                             </FormGroup>
                             {'Password'}
                             <FormGroup floating>
-                                <Input id="password"
+                                <Input required
+                                       id="password"
                                        name="password"
                                        placeholder="Password"
                                        type="password"
@@ -58,11 +77,13 @@ const Login = () => {
                         </Form>
                     </div>
                 </div>
+                <div className="w-25 text-center mx-auto border rounded mt-3">
+                    <small className="text-light">use <strong>kevinryan</strong> and <strong>kev02937@</strong> to test.</small>
+                </div>
                 <div className="w-25 mx-auto mt-3">
-                    <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Ops!</strong> Invalid email or password.
-                        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                    <Alert color="danger" isOpen={visible} toggle={onDismiss}>
+                        <strong>Username</strong> or <strong>password</strong> is incorrect.
+                    </Alert>
                 </div>
             </Container>
         </main>
