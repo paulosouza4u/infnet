@@ -29,9 +29,6 @@ import {Container, Nav, NavItem, NavLink} from "reactstrap";
                                 { token &&
                                     <>
                                         <NavItem>
-                                            <NavLink className="link-success" tag={Link} to="/my-lists">MY LISTS</NavLink>
-                                        </NavItem>
-                                        <NavItem>
                                             <NavLink className="link-success" tag={Link} to="/my-cart">MY CART</NavLink>
                                         </NavItem>
                                     </>

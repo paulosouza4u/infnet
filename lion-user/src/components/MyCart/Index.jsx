@@ -61,7 +61,7 @@ const MyCart = () => {
                             <button className="btn btn-danger" onClick={() => dispatch(clearCart())}>Clear Cart</button>
                         </div>
                         <div className="d-flex align-items-center justify-content-between">
-                            <button className="btn btn-warning">Checkout</button>
+                            <a href="/checkout" className="btn btn-warning" onClick={() => dispatch(clearCart())}>Checkout</a>
                             <h5 className="ms-3">Total: ${totalCart.toFixed(2)}</h5>
                         </div>
                     </div>

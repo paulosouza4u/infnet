@@ -6,10 +6,10 @@ import Login from "./components/Login/Index";
 import MyCart from "./components/MyCart/Index";
 import Header from "./components/Header/Index";
 import Footer from "./components/Footer/Index";
-import MyLists from "./components/MyList/Index";
 import Welcome from "./components/Welcome/Index";
 import PrivateRoute from "./components/Header/PrivateRoute";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Checkout from "./components/MyCart/Checkout.jsx";
 
 const App = () => {
   return (
@@ -27,7 +27,7 @@ const App = () => {
                           <Routes>
                               <Route path="/welcome" element={<Welcome/>}/>
                               <Route path="/my-cart" element={<MyCart/>}/>
-                              <Route path="/my-lists" element={<MyLists/>}/>
+                              <Route path="/checkout" element={<Checkout/>}/>
                           </Routes>
                       </PrivateRoute>
                   }/>
