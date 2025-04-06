@@ -25,6 +25,11 @@ export const updateUser = async () => {};
 export const deleteUser = async () => {};
 
 export const login = async (credentials) => {
+    /*******
+    const response = await api.post("/login/", credentials);
+    return response;
+     *******/
+
     try {
         const response = await api.post("/login/", credentials);
         return response.data;

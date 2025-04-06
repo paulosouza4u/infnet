@@ -3,6 +3,9 @@ import { useTheme } from "../hooks/ThemeContext";
 import { useCart } from "../hooks/CartContext";
 import { FaSun, FaMoon, FaShoppingCart } from "react-icons/fa";
 
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/authSlice";
+
 import logo from "../assets/Infnet-Logo.png"
 
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
@@ -15,11 +18,14 @@ import {
     Nav,
     NavItem,
     NavLink,
-    NavbarText
-  } from "reactstrap"
+    NavbarText, Button
+} from "reactstrap"
   
 
 const Header = () => {
+
+    const reduxDispatch = useDispatch();
+    const token = useSelector((state) => state.auth.token);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -32,10 +38,10 @@ const Header = () => {
 
     return (
     <>
-    <Navbar color="dark" dark expand="md">
+    <Navbar color={theme} dark={theme === 'dark'} light={theme === 'light'} expand="md">
         <NavbarBrand>
-        <img src={logo} width="50px;" style={{paddingRight: "5px"}}/>
-        MIT Full Stack 2025
+            <img src={logo} width="50px;" style={{paddingRight: "5px"}}/>
+            MIT Full Stack 2025
         </NavbarBrand>
         <NavbarToggler onClick={toggle}/>
         <Collapse isOpen={isOpen} navbar>
@@ -100,6 +106,13 @@ const Header = () => {
                         Dashboard
                     </NavLink>
                 </NavItem>
+                { token &&
+                    <NavItem>
+                        <Button color="secondary" onClick={() => reduxDispatch(logout())}>
+                            Logout
+                        </Button>
+                    </NavItem>
+                }
             </Nav>
             <NavbarText onClick={toggleTheme}>{theme === 'dark' ? <FaSun/>:<FaMoon/>}</NavbarText>
             <NavbarText><FaShoppingCart></FaShoppingCart>{cart.length}</NavbarText>
