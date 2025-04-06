@@ -9,6 +9,10 @@ const MyCart = () => {
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
 
+    const totalCart = cart.reduce((accumulator, item) => {
+        return accumulator + (item.totalPrice || 0);
+    }, 0);
+
     const handleQuantityChange = (id, newQuantity) => {
         dispatch(updateQuantity({ id, quantity: parseInt(newQuantity) }));
     };
@@ -34,12 +38,17 @@ const MyCart = () => {
                                         <p className="fs-5 ms-4">{item.title}</p>
                                     </div>
                                     <div className="d-flex align-items-center justify-content-between px-3 w-25 border-start">
-                                        <input className="rounded fw-medium w-25 form-control"
-                                               type="number"
-                                               value={item.quantity}
-                                               onChange={(e) => handleQuantityChange(item.id, e.target.value)}
-                                               min="1"/>
-                                        <p className="text-center fs-5 ms-3"><small>Price:</small> ${item.price}</p>
+                                        <p className="d-flex align-items-center">
+                                            <small className="me-3">Qtty.</small>
+                                            <input className="rounded fw-medium w-50 form-control form-control-sm"
+                                                   type="number"
+                                                   value={item.quantity}
+                                                   onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                                                   min="1"/>
+                                        </p>
+                                        <p className="d-flex align-items-center">
+                                            <small className="me-3">Price:</small> ${item.totalPrice}
+                                        </p>
                                     </div>
                                 </div>
                             ))
@@ -53,7 +62,7 @@ const MyCart = () => {
                         </div>
                         <div className="d-flex align-items-center justify-content-between">
                             <button className="btn btn-warning">Checkout</button>
-                            <h5 className="ms-3">Total: $00</h5>
+                            <h5 className="ms-3">Total: ${totalCart.toFixed(2)}</h5>
                         </div>
                     </div>
                 </div>
