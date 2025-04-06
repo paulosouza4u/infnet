@@ -53,7 +53,7 @@ const Shop = () => {
                                             <p className="card-text">Price:<b> $ {product.price}</b></p>
                                             <div className="d-flex align-items-center justify-content-between">
                                                 <a className="btn btn-sm btn btn-success" onClick={() => dispatch(addToCart(product))}>Add to Cart</a>
-                                                <a className="card-link" onClick={() => handleModal(product)}><i className="bi bi-search-heart me-1"></i>Details</a>
+                                                <a className="card-link text-success details" onClick={() => handleModal(product)}><i className="bi bi-search-heart me-1"></i>Details</a>
                                             </div>
                                         </div>
                                     </div>
