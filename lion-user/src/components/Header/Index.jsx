@@ -2,12 +2,16 @@ import {Container, Nav, NavItem, NavLink} from "reactstrap";
 import { Link } from "react-router";
 import logotipo from "@image/lion-react.svg";
 import PrivateRoute from "./PrivateRoute.jsx";
+import {useSelector} from "react-redux";
 
 
 /*** HEADER COMPONENT ***/
  const Header = () => {
 
-    const token = false;
+    const token = useSelector((state) => state.auth.token);
+
+    const test = useSelector((state) => state);
+    console.log(test);
 
     /*** Component Render ***/
     return (

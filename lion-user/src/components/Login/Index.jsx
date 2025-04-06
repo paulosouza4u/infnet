@@ -30,6 +30,8 @@ const Login = () => {
             setVisible(true);
             console.log("Login fail: ", resultAction.error);
         }
+
+        console.log(resultAction);
     }
 
     /**** REFAZER EXIBICAO VALIDACAO *****/
@@ -71,7 +73,7 @@ const Login = () => {
                                     Password
                                 </Label>
                             </FormGroup>
-                            <Button color="light">
+                            <Button color="light" outline>
                                 Login
                             </Button>
                         </Form>
