@@ -28,6 +28,18 @@ body {
   object-fit: contain;
 }
 
+/***    My Cart    ***/
+
+.cart-image {
+  height: 60px;
+  width: 80px;
+  object-fit: cover;
+}
+
+.cart-image:hover {
+  object-fit: contain;
+}
+
 /***    Footer    ***/
 
 .footer {

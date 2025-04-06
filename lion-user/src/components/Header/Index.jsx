@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import logotipo from "@image/lion-react.svg";
-import PrivateRoute from "./PrivateRoute.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../redux/slices/authSlice";
 import {Container, Nav, NavItem, NavLink} from "reactstrap";
@@ -10,6 +9,7 @@ import {Container, Nav, NavItem, NavLink} from "reactstrap";
 
     const token = useSelector((state) => state.auth.token);
     const reduxDispatch = useDispatch();
+    const cartItems = useSelector((state) => state.cart);
 
     /*** Component Render ***/
     return (
@@ -50,7 +50,7 @@ import {Container, Nav, NavItem, NavLink} from "reactstrap";
                                         <div className="rounded position-relative bg-success px-1">
                                             <i className="bi bi-bag-heart-fill text-light fs-6"></i>
                                             <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                5
+                                                { cartItems ? cartItems.length : "0"}
                                             </span>
                                         </div>
                                     </NavLink>

@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {fetchLogin} from "../../services/apiAuth.jsx";
 
-const tokenFromStorage = localStorage.getItem('token');
+const tokenFromStorage = localStorage.getItem('lion_token');
 
 export const loginsAsync = createAsyncThunk(
     'auth/login',
@@ -25,7 +25,7 @@ const authSlice = createSlice({
     reducers: {
         logout: (state) => {
             state.token = null;
-            localStorage.removeItem('token');
+            localStorage.removeItem('lion_token');
         }
     },
     extraReducers: (builder) => {
@@ -39,7 +39,7 @@ const authSlice = createSlice({
                 state.token = action.payload?.token || null;
 
                 if (state.token) {
-                    localStorage.setItem('token', state.token);
+                    localStorage.setItem('lion_token', state.token);
                 } else {
                     state.error = "Token not received";
                 }

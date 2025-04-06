@@ -1,10 +1,14 @@
-import { Container, Modal, ModalBody, ModalHeader } from "reactstrap";
-import React, {useEffect, useState} from "react";
-import {fetchProducts} from "../../Services/apiShop.jsx";
 import Loading from "../Loding/Index.jsx";
+import React, {useEffect, useState} from "react";
+import {fetchProducts} from "../../Services/apiShop";
+import {useDispatch} from "react-redux";
+import {addToCart} from "../../redux/slices/cartSlice";
+import { Container, Modal, ModalBody, ModalHeader } from "reactstrap";
 
 /*** SHOP COMPONENT ***/
 const Shop = () => {
+
+    const dispatch = useDispatch();
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -48,8 +52,8 @@ const Shop = () => {
                                             <p className="card-text">Category: <b>{product.category}</b></p>
                                             <p className="card-text">Price:<b> $ {product.price}</b></p>
                                             <div className="d-flex align-items-center justify-content-between">
-                                                <a href="#" className="btn btn-sm btn btn-success">Add to Cart</a>
-                                                <a href="#" className="card-link" onClick={() => handleModal(product)}><i className="bi bi-search-heart me-1"></i>Details</a>
+                                                <a className="btn btn-sm btn btn-success" onClick={() => dispatch(addToCart(product))}>Add to Cart</a>
+                                                <a className="card-link" onClick={() => handleModal(product)}><i className="bi bi-search-heart me-1"></i>Details</a>
                                             </div>
                                         </div>
                                     </div>
