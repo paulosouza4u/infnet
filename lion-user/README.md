@@ -1,12 +1,28 @@
-# React + Vite
+# Bloco: Front-End com React
+## Disciplina: Front-End com React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Você deve desenvolver uma aplicação React através da implementação destas quatro features:
 
-Currently, two official plugins are available:
+1 - Desenvolver o controle de estado através do UseState e UseEffect.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2 - Controlar o render através de componentes e rotas.
 
-## Expanding the ESLint configuration
+3 - Controlar os eventos através de mudanças de componentes e dados.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+4 - Implementar validação e autenticação de usuários através de rotas/API's externas.
+
+Caso tenha interesse em dar um "up" na sua aplicação, implemente estes requisitos:
+- Arquitetura flux;
+- Redux;
+- Autenticação com redux;
+- Noção de backend com strapi.
+
+___________________________________
+
+Requisitos para instalação:
+- Node v22
+- Npm v10
+
+Comandos
+- Executar: npm install
+- Executar: npm run dev
