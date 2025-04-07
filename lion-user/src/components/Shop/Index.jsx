@@ -3,7 +3,44 @@ import React, {useEffect, useState} from "react";
 import {fetchProducts} from "../../Services/apiShop";
 import {useDispatch} from "react-redux";
 import {addToCart} from "../../redux/slices/cartSlice";
-import { Container, Modal, ModalBody, ModalHeader } from "reactstrap";
+import {Alert, Container, Form, FormGroup, Input, Label, Modal, ModalBody, ModalHeader} from "reactstrap";
+
+/*** Filter ***/
+export const Select = (props) => {
+
+    const uniqueCategories = [...new Set(props.products.map(item => item.category))];
+
+    /*** Component Render ***/
+    return (
+        <FormGroup>
+            {props.products.length > 0 ? (
+                <>
+                    <Label for="regionSelect">Select Category<span className="text-danger">*</span></Label>
+                    <Input id="regionSelect"
+                           bsSize="lg"
+                           name="select"
+                           type="select"
+                           onChange={(e) => {
+                               props.setFilter !== undefined && props.setFilter(e.target.value);
+                           }}>
+                        <option value="">Select...</option>
+                        {uniqueCategories.length > 0 && (
+                            <>
+                                {uniqueCategories.map((category, index) => (
+                                    <option key={index}>{category}</option>
+                                ))}
+                            </>
+                        )}
+                    </Input>
+                </>
+            ) : (
+                <Alert color="secondary">
+                    Que pena. A lista de categoria esta vazia! =/
+                </Alert>
+            )}
+        </FormGroup>
+    );
+}
 
 /*** SHOP COMPONENT ***/
 const Shop = () => {
@@ -14,12 +51,16 @@ const Shop = () => {
     const [loading, setLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
     const [productSelected, setProductSelected] = useState(null);
+    const [filter, setFilter] = useState("");
 
     const toggleModal = () => setModalOpen(!modalOpen);
     const handleModal = (product) => {
         setProductSelected(product);
         toggleModal();
     }
+    const productsFilter = products.length > 0 && (
+        products.filter((itens) => itens.category.toLowerCase().includes(filter.toLowerCase()))
+    );
 
     useEffect(() => {
         const getProducts = async () => {
@@ -40,10 +81,17 @@ const Shop = () => {
     return (
         <main>
             <Container className="heightDefault">
+                <div>
+                    <Form>
+                        <div className="rounded mt-5 p-3 border" style={{maxWidth: "30rem"}}>
+                            <Select products={products} setFilter={setFilter}/>
+                        </div>
+                    </Form>
+                </div>
                 <Loading active={loading} className="mt-5"/>
                 <div className="d-flex flex-wrap justify-content-between py-5">
-                    {products.length > 0 ? (
-                            products.map((product, index) => (
+                    {productsFilter.length > 0 ? (
+                            productsFilter.map((product, index) => (
                                 <div key={index}>
                                     <div className="card mb-5" style={{ width: '18rem' }}>
                                         <img src={product.image} className="img-fluid img-thumbnail card-img-top shop-img-card" alt=""/>
