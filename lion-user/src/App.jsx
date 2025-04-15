@@ -4,12 +4,13 @@ import {Provider} from "react-redux";
 import Shop from "./components/Shop/Index";
 import Login from "./components/Login/Index";
 import MyCart from "./components/MyCart/Index";
+import MyList from "./components/MyList/Index";
 import Header from "./components/Header/Index";
 import Footer from "./components/Footer/Index";
 import Welcome from "./components/Welcome/Index";
 import PrivateRoute from "./components/Header/PrivateRoute";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Checkout from "./components/MyCart/Checkout.jsx";
+import Checkout from "./components/MyCart/Checkout";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
                       <PrivateRoute>
                           <Routes>
                               <Route path="/welcome" element={<Welcome/>}/>
+                              <Route path="/my-list" element={<MyList/>}/>
                               <Route path="/my-cart" element={<MyCart/>}/>
                               <Route path="/checkout" element={<Checkout/>}/>
                           </Routes>
