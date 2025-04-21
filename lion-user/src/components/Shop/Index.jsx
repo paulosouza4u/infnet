@@ -10,8 +10,6 @@ export const Select = (props) => {
 
     const uniqueCategories = [...new Set(props.products.map(item => item.category))];
 
-    console.log(uniqueCategories);
-
     /*** Component Render ***/
     return (
         <FormGroup>
