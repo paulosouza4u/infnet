@@ -1,4 +1,6 @@
-const fs = require('fs/promises');
+//models/	Responsável pelo acesso aos dados (leitura, escrita nos arquivos JSON).
+
+const fs = require('fs/promises'); // File System
 const path = require('path');
 
 const filePath = path.join(__dirname, '../data/users.json');

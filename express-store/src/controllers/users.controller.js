@@ -1,20 +1,20 @@
-const usersModel = require('../models/users.model');
+// controllers/ Intermedia a requisição, chama os services e envia resposta (JSON + status).
 
-const getAllUsers = async (req, res) => {
+const usersService = require('../services/users.service');
+
+const getAllUsers = async (request, response) => {
     try {
-        const users = await usersModel.getUsers();
-
-        if (!users || !users.length === 0) {
-            return res.status(404).json({message: 'No users found.'});
-        }
-
-        return res.status(200).json(users);
+        const users = await usersService.getAllUsers();
+        return response.status(200).json(users);
     } catch (error) {
         console.error(error);
-        return res.status(500).json({message: 'Something went wrong.'});
+        if (error.message === 'Usuários não encontrados') {
+            return response.status(404).json({ message: error.message });
+        }
+        response.status(500).json({ message: 'Erro interno do servidor: ' + error.message });
     }
 }
 
 module.exports = {
     getAllUsers
-}
+};
