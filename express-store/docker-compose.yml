@@ -1,0 +1,20 @@
+# Start App
+
+services:
+  node:
+    image: node-nvm
+    container_name: node-nvm
+    build:
+      context: ../../docker/node
+    environment:
+      - NODE_VERSION=22
+      - NODE_ENV=development
+    volumes:
+      - D:/host/var-www/infnet/express-store:/express-store
+      - ../../docker/node/certs:/certs:rw
+    working_dir: /express-store
+    stdin_open: true
+    tty: true
+    ports:
+      - "3000:3000"
+      - "443:443"
