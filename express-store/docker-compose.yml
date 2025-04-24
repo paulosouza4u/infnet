@@ -3,16 +3,16 @@
 services:
   node:
     image: node-nvm
-    container_name: node-nvm
+    container_name: express-store
     build:
-      context: ../../docker/node
+      context: ../../../docker/node
     environment:
       - NODE_VERSION=22
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
     volumes:
       - D:/host/var-www/infnet/express-store:/express-store
-      - ../../docker/node/certs:/certs:rw
+      - ../../../docker/node/certs:/certs:rw
     working_dir: /express-store
     stdin_open: true
     tty: true
