@@ -10,6 +10,19 @@ const getAllUsers = async () => {
     return users;
 };
 
+const saveUser = async ({username, email, password}) => {
+    const users = await usersModel.getUsers();
+
+    const userExists = users.some(
+        user =>
+            user.username === username ||
+            user.email === email
+
+        //continuar...
+    )
+}
+
 module.exports = {
-    getAllUsers
+    getAllUsers,
+    saveUser
 };
