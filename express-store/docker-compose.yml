@@ -2,7 +2,6 @@
 
 services:
   node:
-    image: node-nvm
     container_name: express-store
     build:
       context: ../../../docker/node
