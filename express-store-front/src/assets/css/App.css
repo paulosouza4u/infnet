@@ -1,0 +1,58 @@
+/***    Default    ***/
+body {
+  background-color: #20c997;
+}
+
+.heightDefault {
+  min-height: 80dvh;
+}
+
+/***    Header    ***/
+
+.header {
+  height: 8dvh;
+}
+
+.header img {
+  max-width: 3dvw;
+}
+
+/***    Shop    ***/
+
+.details {
+  cursor: pointer;
+}
+
+.shop-img-card {
+  height: 200px;
+  object-fit: cover;
+}
+
+.shop-img-card:hover {
+  object-fit: contain;
+}
+
+/***    My Cart    ***/
+
+.cart-image {
+  height: 60px;
+  width: 80px;
+  object-fit: cover;
+}
+
+.cart-image:hover {
+  object-fit: contain;
+}
+
+/***    Footer    ***/
+
+.footer {
+  background-color: #212121;
+  color: #fff;
+  font-size: .75rem;
+  border: 1px solid transparent;
+}
+
+.footer img {
+  max-width: 40px;
+}

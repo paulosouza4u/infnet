@@ -12,7 +12,8 @@ const getProducts = async () => {
 
 const getProductById = async (id) => {
     const data = await getProducts();
-    const product = data.find(product => product.id === Number(id)
+    const product = data.find(
+        product => product.id === Number(id)
     );
     return product;
 }
@@ -21,8 +22,15 @@ const saveProducts = async (products) => {
     await fs.writeFile(filePath, JSON.stringify(products, null, 2), 'utf8');
 }
 
+const saveProduct = async (product) => {
+    const products = await getProducts();
+    products.push(product);
+    await saveProducts(products);
+}
+
 module.exports = {
     getProducts,
     getProductById,
     saveProducts,
+    saveProduct
 }
