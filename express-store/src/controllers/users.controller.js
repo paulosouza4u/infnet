@@ -15,6 +15,26 @@ const getAllUsers = async (request, response) => {
     }
 }
 
+const createUser = async (request, response) => {
+    const { username, email, password } = request.body;
+
+    try {
+        if (!username || !email || !password) {
+            return response.status(400).json({ error: 'Dados inválidos.' });
+        }
+        const user = await usersService.saveUser({ username, email, password });
+
+        if (!user) {
+            return response.status(400).json({ error: 'Usuário já cadastrado.' });
+        }
+
+        return response.status(201).json(user);
+    } catch (error) {
+        response.status(500).json({ message: 'Erro interno do servidor: ' + error.message });
+    }
+}
+
 module.exports = {
-    getAllUsers
+    getAllUsers,
+    createUser
 };
