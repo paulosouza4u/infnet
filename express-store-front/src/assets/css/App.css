@@ -40,10 +40,6 @@ body {
   object-fit: cover;
 }
 
-.cart-image:hover {
-  object-fit: contain;
-}
-
 /***    Footer    ***/
 
 .footer {

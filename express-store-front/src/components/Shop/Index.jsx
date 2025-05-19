@@ -1,9 +1,10 @@
 import Loading from "../Loding/Index.jsx";
 import React, {useEffect, useState} from "react";
-import {fetchProducts} from "../../Services/apiShop";
-import {useDispatch} from "react-redux";
+import {fetchProducts} from "../../services/apiProducts.jsx";
+import {useDispatch, useSelector} from "react-redux";
 import {addToCart} from "../../redux/slices/cartSlice";
 import {Alert, Container, Form, FormGroup, Input, Label, Modal, ModalBody, ModalHeader} from "reactstrap";
+import {fetchProductsAsync} from "../../redux/slices/productSlice.jsx";
 
 /*** Filter ***/
 export const Select = (props) => {
@@ -46,9 +47,9 @@ export const Select = (props) => {
 const Shop = () => {
 
     const dispatch = useDispatch();
+    const products = useSelector((state) => state.products.items);
+    const status = useSelector((state) => state.products.status);
 
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
     const [productSelected, setProductSelected] = useState(null);
     const [filter, setFilter] = useState("");
@@ -63,19 +64,8 @@ const Shop = () => {
     );
 
     useEffect(() => {
-        const getProducts = async () => {
-            try {
-                setLoading(true);
-                const products = await fetchProducts();
-                setProducts(products);
-            } catch (error) {
-                console.log(error.message);
-            } finally {
-                setLoading(false);
-            }
-        }
-        getProducts();
-    }, []);
+        dispatch(fetchProductsAsync());
+    }, [dispatch]);
 
     /*** Component Render ***/
     return (
@@ -88,7 +78,7 @@ const Shop = () => {
                         </div>
                     </Form>
                 </div>
-                <Loading active={loading} className="mt-5"/>
+                <Loading active={status === 'loading'} className="mt-5"/>
                 <div className="d-flex flex-wrap justify-content-between py-5">
                     {productsFilter.length > 0 ? (
                             productsFilter.map((product, index) => (

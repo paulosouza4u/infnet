@@ -1,28 +1,30 @@
-import {Button, Container} from "reactstrap";
-import React, {useEffect, useState} from "react";
-import {fetchProducts} from "../../services/apiShop.jsx";
+import {Container} from "reactstrap";
+import React, {useEffect} from "react";
+import {deleteProduct} from "../../services/apiProducts.jsx";
 import Loading from "../Loding/Index.jsx";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchProductsAsync} from "../../redux/slices/productSlice";
 
 /*** CART COMPONENT ***/
 const Admin = () => {
 
-    const [loading, setLoading] = useState(true);
-    const [products, setProducts] = useState([]);
+    const dispatch = useDispatch();
+    const products = useSelector((state) => state.products.items);
+    const status = useSelector((state) => state.products.status);
 
     useEffect(() => {
-        const getProducts = async () => {
-            try {
-                setLoading(true);
-                const products = await fetchProducts();
-                setProducts(products);
-            } catch (error) {
-                console.log(error.message);
-            } finally {
-                setLoading(false);
-            }
+        dispatch(fetchProductsAsync());
+    }, [dispatch]);
+
+    const handleDelete = async (prop) => {
+        try {
+            await deleteProduct(prop);
+            console.log(`Produto ID ${prop} deletado com sucesso.`);
+            dispatch(fetchProductsAsync());
+        } catch (error) {
+            console.log(`Falha ao deletar o produto ID ${prop}.` + error.message)
         }
-        getProducts();
-    }, []);
+    }
 
     /*** Component Render ***/
     return (
@@ -32,7 +34,7 @@ const Admin = () => {
                     <div className="mb-4">
                         <h1 className="display-6">Shop Edit</h1>
                     </div>
-                    <Loading active={loading} className="mt-5"/>
+                    <Loading active={status === 'loading'} className="mt-5"/>
                     <div className="mb-4">
                         { products && (
                             products.map((item) => (
@@ -56,8 +58,14 @@ const Admin = () => {
                                             </span>
                                         </div>
                                         <div className="d-flex align-items-center justify-content-end">
-                                            <button className="btn btn-sm btn-warning" onClick={() => {}}><i className="bi bi-pencil-square"></i></button>
-                                            <button className="btn btn-sm btn-danger ms-2" onClick={() => {}}><i className="bi bi-trash"></i></button>
+                                            <button className="btn btn-sm btn-warning" onClick={(event) => {
+                                                console.log(event);
+                                            }}>
+                                                <i className="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button className="btn btn-sm btn-danger ms-2" onClick={() => handleDelete(item.id)}>
+                                                <i className="bi bi-trash"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

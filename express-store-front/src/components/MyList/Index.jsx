@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Container} from "reactstrap";
 import Loading from "../Loding/Index.jsx";
-import {fetchProducts} from "../../services/apiShop.jsx";
+import {fetchProducts} from "../../services/apiProducts.jsx";
 
 /*** CART COMPONENT ***/
 const Index = () => {
@@ -86,10 +86,10 @@ const Index = () => {
                     <Loading active={loading} className="mt-5"/>
                     <div className="d-flex gap-3 justify-content-center flex-wrap mt-4">
                         {todos && todos.map((todo, listIndex) => (
-                            <div key={listIndex} className="card " style={{ width: '32%' }}>
+                            <div key={listIndex} className="card bg-success" style={{ width: '32%' }}>
                                 <div className="card-body">
                                     <div className="d-flex justify-content-between align-items-center">
-                                        <h5 className="card-title">{todo.heading}</h5>
+                                        <h5 className="card-title text-white">{todo.heading}</h5>
                                         <button className="btn btn-sm btn-danger" type="button" onClick={() => handleDeleteTodo(listIndex)}>Delete</button>
                                     </div>
                                     <ul className="list-group list-group-flush rounded my-3">
