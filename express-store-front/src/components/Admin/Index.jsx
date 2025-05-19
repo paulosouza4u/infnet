@@ -1,5 +1,5 @@
-import {Container} from "reactstrap";
-import React, {useEffect} from "react";
+import {Container, Modal, ModalBody, ModalHeader} from "reactstrap";
+import React, {useEffect, useState} from "react";
 import {deleteProduct} from "../../services/apiProducts.jsx";
 import Loading from "../Loding/Index.jsx";
 import {useDispatch, useSelector} from "react-redux";
@@ -11,10 +11,18 @@ const Admin = () => {
     const dispatch = useDispatch();
     const products = useSelector((state) => state.products.items);
     const status = useSelector((state) => state.products.status);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [productSelected, setProductSelected] = useState(null);
 
     useEffect(() => {
         dispatch(fetchProductsAsync());
     }, [dispatch]);
+
+    const toggleModal = () => setModalOpen(!modalOpen);
+    const handleModal = (product) => {
+        setProductSelected(product);
+        toggleModal();
+    }
 
     const handleDelete = async (prop) => {
         try {
@@ -43,30 +51,19 @@ const Admin = () => {
                                         <img src={`http://localhost:3000/uploads/${item.image}`} className="img-fluid img-thumbnail card-img-top cart-image" alt=""/>
                                         <p className="fs-5 ms-4">{item.title}</p>
                                     </div>
-                                    <div className="d-flex flex-column justify-content-center border-start w-25">
-                                        <div className="d-flex align-items-center justify-content-between">
-                                            <span className="d-flex align-items-center">
-                                                <small className="ms-2">Stock.</small>
-                                                <input className="rounded fw-medium w-50 form-control form-control-sm ms-2"
-                                                       type="number"
-                                                       value={item.stock}
-                                                       onChange={(e) => {}}
-                                                       min="1"/>
+                                    <div className="d-flex align-items-center justify-content-around border-start w-25">
+                                        <span className="d-flex align-items-center">
+                                                <small className="me-1">Stock:</small>{item.stock}
                                             </span>
-                                            <span className="d-flex align-items-center">
-                                                <small className="mx-2">Price:</small> ${item.price}
+                                        <span className="d-flex align-items-center">
+                                                <small className="me-1">Price:</small> ${item.price}
                                             </span>
-                                        </div>
-                                        <div className="d-flex align-items-center justify-content-end">
-                                            <button className="btn btn-sm btn-warning" onClick={(event) => {
-                                                console.log(event);
-                                            }}>
-                                                <i className="bi bi-pencil-square"></i>
-                                            </button>
-                                            <button className="btn btn-sm btn-danger ms-2" onClick={() => handleDelete(item.id)}>
-                                                <i className="bi bi-trash"></i>
-                                            </button>
-                                        </div>
+                                        <button className="btn btn-sm btn-warning" onClick={() => handleModal(item)}>
+                                            <i className="bi bi-pencil-square"></i>
+                                        </button>
+                                        <button className="btn btn-sm btn-danger" onClick={() => handleDelete(item.id)}>
+                                            <i className="bi bi-trash"></i>
+                                        </button>
                                     </div>
                                 </div>
                             ))
@@ -79,6 +76,90 @@ const Admin = () => {
                     </div>
                 </div>
             </Container>
+            <Modal isOpen={modalOpen} toggle={toggleModal} centered scrollable>
+                <ModalHeader toggle={toggleModal}><i className="bi bi-pencil-square me-1"></i>Edit Product</ModalHeader>
+                <ModalBody>
+                    {productSelected && (
+                        <>
+                            <form>
+                                <div className="px-3 mb-3">
+                                    <div className="mb-3">
+                                        <label htmlFor="inputTitle" className="form-label text-success">Title</label>
+                                        <input type="text"
+                                               className="form-control form-control-sm"
+                                               id="inputTitle"
+                                               value={productSelected.title}
+                                               onChange={() => {
+                                               }}/>
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="inputDescription"
+                                               className="form-label text-success">Description</label>
+                                        <textarea className="form-control form-control-sm"
+                                                  id="inputDescription"
+                                                  rows="3"
+                                                  value={productSelected.description}
+                                                  onChange={() => {
+                                                  }}/>
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="inputCategory"
+                                               className="form-label text-success">Category</label>
+                                        <input className="form-control form-control-sm"
+                                               id="inputCategory"
+                                               value={productSelected.category}
+                                               onChange={() => {
+                                               }}/>
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="inputBrand" className="form-label text-success">Brand</label>
+                                        <input className="form-control form-control-sm"
+                                               id="inputBrand"
+                                               value={productSelected.brand}
+                                               onChange={() => {
+                                               }}/>
+                                    </div>
+                                    <div className="d-flex justify-content-between w-100">
+                                        <div className="w-25 mb-3">
+                                            <label htmlFor="inputStock"
+                                                   className="form-label text-success">Stock</label>
+                                            <input className="form-control form-control-sm"
+                                                   id="inputStock"
+                                                   value={productSelected.stock}
+                                                   onChange={() => {
+                                                   }}/>
+                                        </div>
+                                        <div className="w-25 mb-3">
+                                            <label htmlFor="inputBrand"
+                                                   className="form-label text-success">Price</label>
+                                            <input className="form-control form-control-sm"
+                                                   id="inputBrand"
+                                                   value={productSelected.price}
+                                                   onChange={() => {
+                                                   }}/>
+                                        </div>
+                                    </div>
+                                    <div className="d-flex flex-column align-items-start mb-3">
+                                        <label htmlFor="image" className="form-label text-success">Image</label>
+                                        <img src={`http://localhost:3000/uploads/${productSelected.image}`}
+                                             className="img-fluid img-thumbnail cart-image-edit" alt="Product image"/>
+                                    </div>
+                                    <div className="input-group mb-3">
+                                        <input type="file"
+                                               className="form-control"
+                                               id="inputGroupFile01"
+                                               onChange={() => {}}/>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div className="d-flex align-items-center justify-content-end mt-3">
+                                <button type="submit" className="btn btn-sm btn-warning">Save edit</button>
+                                </div>
+                            </form>
+                        </>
+                    )}
+                </ModalBody>
+            </Modal>
         </main>
     );
 }

@@ -1,6 +1,5 @@
 import Loading from "../Loding/Index.jsx";
 import React, {useEffect, useState} from "react";
-import {fetchProducts} from "../../services/apiProducts.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart} from "../../redux/slices/cartSlice";
 import {Alert, Container, Form, FormGroup, Input, Label, Modal, ModalBody, ModalHeader} from "reactstrap";

@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    "title": "Fjallravenn - Foldsack No. 1 Backpack, Fits 15 Laptops",
     "price": 109.95,
     "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
     "category": "men's clothing",
@@ -154,20 +154,6 @@
     }
   },
   {
-    "id": 12,
-    "title": "WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive",
-    "price": 114,
-    "description": "Expand your PS4 gaming experience, Play anywhere Fast and easy, setup Sleek design with high capacity, 3-year manufacturer's limited warranty",
-    "category": "electronics",
-    "image": "1747634746829-610131825.jpg",
-    "stock": 1,
-    "brand": "Brand",
-    "rating": {
-      "rate": 4.8,
-      "count": 400
-    }
-  },
-  {
     "id": 13,
     "title": "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin",
     "price": 599,
@@ -263,20 +249,6 @@
     "rating": {
       "rate": 4.5,
       "count": 146
-    }
-  },
-  {
-    "id": 20,
-    "title": "DANVOUY Womens T Shirt Casual Cotton Short",
-    "price": 12.99,
-    "description": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
-    "category": "women's clothing",
-    "image": "1747634910169-986827880.jpg",
-    "stock": 4,
-    "brand": "Brand",
-    "rating": {
-      "rate": 3.6,
-      "count": 145
     }
   }
 ]

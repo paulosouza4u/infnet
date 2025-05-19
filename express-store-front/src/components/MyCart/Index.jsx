@@ -34,7 +34,7 @@ const MyCart = () => {
                             cart.map((item) => (
                                 <div key={item.id} className="d-flex p-2 justify-content-between border-bottom border-light">
                                     <div className="d-flex align-items-center w-75">
-                                        <img src={item.image} className="img-fluid img-thumbnail card-img-top cart-image" alt=""/>
+                                        <img src={`http://localhost:3000/uploads/${item.image}`} className="img-fluid img-thumbnail card-img-top cart-image" alt=""/>
                                         <p className="fs-5 ms-4">{item.title}</p>
                                     </div>
                                     <div className="d-flex align-items-center justify-content-between px-3 w-25 border-start">
