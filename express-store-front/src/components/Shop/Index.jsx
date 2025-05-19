@@ -94,7 +94,7 @@ const Shop = () => {
                             productsFilter.map((product, index) => (
                                 <div key={index}>
                                     <div className="card mb-5" style={{ width: '18rem' }}>
-                                        <img src={product.image} className="img-fluid img-thumbnail card-img-top shop-img-card" alt=""/>
+                                        <img src={`http://localhost:3000/uploads/${product.image}`} className="img-fluid img-thumbnail card-img-top shop-img-card" alt=""/>
                                         <div className="card-body">
                                             <h5 className="card-title">{product.title}</h5>
                                             <p className="card-text">Category: <b>{product.category}</b></p>

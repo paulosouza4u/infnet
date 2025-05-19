@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiShop = axios.create({
-    baseURL: 'https://fakestoreapi.com',
+    baseURL: 'http://localhost:3000',
     headers: {
         Accept: "application/json",
         "Content-type": "application/json",

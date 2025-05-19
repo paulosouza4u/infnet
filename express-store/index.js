@@ -6,6 +6,7 @@ const path = require('path');
 
 const userRoutes = require('./src/routes/users.routes');
 const productRoutes = require('./src/routes/products.routes');
+const adminRoutes = require('./src/routes/admin/products.routes');
 const authRoutes = require('./src/routes/auth.routes');
 
 const {verifyToken} = require('./src/middlewares/auth.middleware');
@@ -24,6 +25,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 //Private routes
 app.use('/users', verifyToken, userRoutes);
+app.use('/admin/products', verifyToken, adminRoutes);
 app.use('/products', productRoutes);
 
 const port = process.env.PORT;

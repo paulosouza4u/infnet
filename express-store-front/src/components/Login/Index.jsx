@@ -87,7 +87,9 @@ const Login = () => {
                     </div>
                 </div>
                 <div className="w-25 text-center mx-auto border rounded mt-3">
-                    <small className="text-light">use <strong>kevinryan</strong> and <strong>kev02937@</strong> to test.</small>
+                    <small className="text-light">use <strong className="text-dark">Jeff / 123</strong> and <strong className="text-dark">Admin / admin</strong> to test.</small>
+                    <br/>
+                    <small className="text-light">Disponível em /data/users.json @express-store</small>
                 </div>
                 <div className="w-25 mx-auto mt-3">
                     <Alert color="danger" isOpen={visible} toggle={onDismiss}>

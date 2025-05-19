@@ -8,6 +8,7 @@ import {Container, Nav, NavItem, NavLink} from "reactstrap";
  const Header = () => {
 
     const token = useSelector((state) => state.auth.token);
+    const username = useSelector((state) => state.auth.username);
     const reduxDispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart);
 
@@ -23,6 +24,11 @@ import {Container, Nav, NavItem, NavLink} from "reactstrap";
                                 <h1 className="display-6">Lion User</h1>
                             </div>
                             <Nav>
+                                { username === 'Admin' &&
+                                    <NavItem>
+                                        <NavLink className="link-dark fw-medium" tag={Link} to="/admin">ADMIN</NavLink>
+                                    </NavItem>
+                                }
                                 <NavItem>
                                     <NavLink className="link-success" tag={Link} to="/">SHOP</NavLink>
                                 </NavItem>
@@ -55,6 +61,11 @@ import {Container, Nav, NavItem, NavLink} from "reactstrap";
                                         </div>
                                     </NavLink>
                                 </NavItem>
+                                { token &&
+                                    <div className="ms-2 mt-2 text-dark fw-medium border-start border-dark ps-3">
+                                        <small>Hello, {username}!</small>
+                                    </div>
+                                }
                             </Nav>
                         </div>
                     </div>

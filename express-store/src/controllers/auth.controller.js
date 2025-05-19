@@ -8,7 +8,7 @@ const login = async (request, response) => {
         if (!token) {
             return response.status(401).json({ message: 'Usuário ou senha inválidos.' });
         }
-        response.status(200).json({ token });
+        response.status(200).json({ token, username });
     } catch (error) {
         response.status(500).json({ message: 'Erro interno do servidor: ' + error.message });
     }
