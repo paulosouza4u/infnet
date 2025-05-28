@@ -3,12 +3,8 @@
 services:
   node:
     container_name: express-store-front
-    image: express-store-front:nvm22
-    build:
-      context: ../../../../docker/node
+    image: paulohbsouzaa/node:nvm22
     environment:
-      - NODE_VERSION=22
-      - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
     volumes:
       - C:/host/var-www/html/infnet/express-store-front:/app
