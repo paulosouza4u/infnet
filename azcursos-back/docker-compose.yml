@@ -1,0 +1,25 @@
+# Start App
+
+services:
+  node:
+    container_name: azcursos-back
+    image: paulohbsouzaa/node:nvm22
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - APP_COMMANDS=npm install && npm run dev
+    volumes:
+      - C:/host/var-www/html/infnet/azcursos-back:/app
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    ports:
+      - "3000:3000"
+  mysql:
+    image: mysql:8.4.5
+    container_name: mysql-azcursos #Name-App
+    env_file:
+      - ./.env
+    volumes:
+      - C:/host/var-lib/mysql/azcursos:/var/lib/mysql #Folder Name-App
+    ports:
+      - "3306:3306"

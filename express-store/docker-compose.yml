@@ -6,6 +6,7 @@ services:
     image: paulohbsouzaa/node:nvm22
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - APP_COMMANDS=npm install && npm run dev
     volumes:
       - C:/host/var-www/html/infnet/express-store:/app
     working_dir: /app
