@@ -1,0 +1,16 @@
+# Start App
+
+services:
+  node:
+    container_name: azcursos-front
+    image: paulohbsouzaa/node:nvm22
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - APP_COMMANDS=npm install && npm run dev
+    volumes:
+      - C:/host/var-www/html/infnet/azcursos-front:/app
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    ports:
+      - "5173-5178:5173-5178"
