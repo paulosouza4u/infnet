@@ -4,11 +4,15 @@ require('dotenv').config();
 
 //
 const CursoRoutes = require('./src/routes/CursoRoutes');
+const UsuarioRoutes = require('./src/routes/UsuarioRoutes');
+const AuthRoutes  = require('./src/routes/AuthRoutes')
 
 //
 const app = express();
 app.use(express.json());
 app.use('/cursos', CursoRoutes);
+app.use('/usuarios', UsuarioRoutes)
+app.use('/autenticacao', AuthRoutes )
 
 //const cors = require('cors');
 //app.use(cors());
