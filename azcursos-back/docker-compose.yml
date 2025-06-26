@@ -16,10 +16,10 @@ services:
       - "3000:3000"
   mysql:
     image: mysql:8.4.5
-    container_name: mysql-azcursos #Name-App
+    container_name: mysql-azcursos
     env_file:
       - ./.env
     volumes:
-      - C:/host/var-lib/mysql/azcursos:/var/lib/mysql #Folder Name-App
+      - C:/host/var-lib/mysql/azcursos:/var/lib/mysql
     ports:
       - "3306:3306"
