@@ -1,31 +1,38 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const moment = require('moment');
 const Usuario = require('../models/Usuario');
 
 const UsuarioService = {
     async cadastrar({ nome, email, senha, nascimento }) {
         const existe = await Usuario.findOne({
-            where: {email}
+            where: { email }
         })
-        if (existe) {
-            throw new Error('Email já cadastrado.');
+        if(existe){
+            throw new Error('Email já cadastrado');
+        }
+
+        const nascimentoDate = moment(nascimento, 'DD/MM/YYYY', true);
+        if (!nascimentoDate.isValid()) {
+            throw new Error('Data de nascimento inválida. Use o formato DD/MM/YYYY');
         }
 
         const senhaHash = await bcrypt.hash(senha, 10);
+
         const usuario = await Usuario.create({
             nome,
             email,
             senha: senhaHash,
-            nascimento
+            nascimento: nascimentoDate.format('YYYY-MM-DD')
         });
 
-        const retornoUsuario = {
-            nome,
-            email,
-            nascimento
+        const returnUsuario = {
+            nome: usuario.nome,
+            email: usuario.email,
+            nascimento: nascimentoDate.format('DD/MM/YYYY')
         }
 
-        return retornoUsuario;
+        return returnUsuario;
     },
 
     async listar() {
