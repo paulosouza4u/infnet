@@ -1,0 +1,21 @@
+{
+  "name": "typescript1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "types": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Paulo Souza",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
