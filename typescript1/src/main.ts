@@ -1,15 +1,10 @@
-import { usuarios } from './usuarios';
+import app from './app';
+import dotenv from 'dotenv';
 
-const usuarioDB = retornaUsuarios()
-console.log(usuarioDB);
+dotenv.config();
 
-const usuarioID = retornaUsuariosPorId(21);
-console.log(usuarioID);
+const PORT = process.env.PORT || 3000;
 
-// Hoisting
-function retornaUsuarios() {
-    return usuarios;
-}
-function retornaUsuariosPorId(id: number) {
-    return usuarios.find(usuario => usuario.id === id);
-}
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
