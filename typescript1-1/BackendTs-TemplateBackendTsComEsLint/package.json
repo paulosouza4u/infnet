@@ -1,0 +1,28 @@
+{
+  "name": "backendts",
+  "version": "1.0.0",
+  "description": "Projeto",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "ts-node src/main.ts",
+    "dev": "ts-node-dev src/main.ts",
+    "lint": "eslint ./src/**/*.ts --fix",
+    "build": "npx tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "@eslint/json": "^0.13.1",
+    "@eslint/markdown": "^7.1.0",
+    "@types/node": "^24.1.0",
+    "eslint": "^9.32.0",
+    "globals": "^16.3.0",
+    "jiti": "^2.5.1",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0"
+  }
+}
