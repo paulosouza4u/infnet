@@ -1,16 +1,19 @@
-import Head from 'next/head';
-import Layout from "../_components/Layout";
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import Link from "next/link";
+import Layout from "../components/layout";
+import Login from "../components/login";
 
 export default function Home() {
   return (
-      <Layout>
-          <Head>
-              <title>Hi!</title>
-              <link rel="icon" href="/favicon.ico" />
-          </Head>
-          <main>
-              <h1>Hello World!</h1>
-          </main>
-      </Layout>
+    <Layout>
+      <Head>
+        <title>Hello NextJS World!</title>
+      </Head>
+      <main>
+        <h1>Hello NextJS World!</h1>
+        <Login />
+      </main>
+    </Layout>
   );
 }
