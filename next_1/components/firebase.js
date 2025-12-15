@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB4Me0TGo1RXJk9_RppMTXNeX_FTF7yFVA",
+  apiKey: "",
   authDomain: "estudos-de-jamstack-2b3a1.firebaseapp.com",
   projectId: "estudos-de-jamstack-2b3a1",
   storageBucket: "estudos-de-jamstack-2b3a1.firebasestorage.app",
