@@ -31,10 +31,7 @@ export async function verifySession() {
   if (!sessionCookie) return null;
 
   try {
-    const decodeClaims = await admin
-      .auth()
-      .verifySessionCookie(sessionCookie, true);
-    return decodeClaims;
+    return await admin.auth().verifySessionCookie(sessionCookie, true);
   } catch (error) {
     return null;
   }
